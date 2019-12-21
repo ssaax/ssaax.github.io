@@ -6,16 +6,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <!-- 设置主屏幕应用图标 --> 
-<link rel="apple-touch-icon" href="/assets/img/Bunch_Of_Heroes.png" />
-<link rel="apple-touch-icon-precomposed" href="/assets/img/Bunch_Of_Heroes.png" />
+<link rel="apple-touch-icon" href="assets/img/Bunch_Of_Heroes.png" />
+<link rel="apple-touch-icon-precomposed" href="assets/img/Bunch_Of_Heroes.png" />
     <title>不能说的秘密</title>
     <!-- Path to Framework7 Library CSS-->
-    <link rel="stylesheet" href="/assets/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="assets/css/framework7.ios.min.css">
     <!-- Path to your custom app styles-->
-    <link rel="stylesheet" href="/assets/css/my-app.css">
+    <link rel="stylesheet" href="assets/css/my-app.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
-  <body>
+  <body onload="whatBrowser()">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -55,8 +55,34 @@
               <div class="content-block-title">Welcome To My Awesome App</div>
               <div class="content-block">
                 <div class="content-block-inner">
-                  <p>Couple of worlds here because my app is so awesome!</p>
-                  <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
+                     <script> 
+                 function whatBrowser() {  
+                 document.Browser.Name.value=navigator.appName;  
+                 document.Browser.Version.value=navigator.appVersion;  
+                 document.Browser.Code.value=navigator.appCodeName;  
+                 document.Browser.Agent.value=navigator.userAgent;  
+                 }  
+                 </script> 
+                 <table> 
+                 <form name="Browser"> 
+                 <tr> 
+                 <td> 浏览器名称: </td> 
+                 <td> <input type="txt" name="Name" size="110%"></td> 
+                 </tr> 
+                 <tr> 
+                 <td> 版本号:</td> 
+                 <td> <input type="txt" name="Version" size="110%"></td> 
+                 </tr> 
+                 <tr> 
+                 <td> 代码名称: </td> 
+                 <td> <input type="txt" name="Code" size="110%"></td> 
+                 </tr> 
+                 <tr> 
+                 <td> 用户代理标识:</td> 
+                 <td> <input type="txt" name="Agent" size="110%"></td> 
+                 </tr> 
+                 </form> 
+                 </table> 
                 </div>
               </div>
               <div class="content-block-title">What about simple navigation?</div>
