@@ -1,10 +1,475 @@
+<!doctype html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=11" />
+<meta name="viewport" content="user-scalable=0">
 <title>Form2</title>
+	<style>
+		html,body{
+			background-color:#111111;
+			
+font-family:SimHei; 
+font:SimHei; 
+			font-size: 12px;
+			
+			margin: 0;
+			padding: 0;
+		}
+		ul{list-style:none;}
+		#infoshow{
+			position: absolute;
+			width: 200px;
+			height: 600px;
+			margin: 0;
+			color:fuchsia;
+			text-shadow:1px 1px 0px #000;
+		}
+		
+		#mapshow{
+			position: absolute;
+			top: 0;
+			left: 200px;
+			width: 200px;
+			height: 600px;
+			margin: 0;
+			color:aqua;
+			
+			text-shadow:1px 1px 0px #000;
+		}
+		#skillshow{
+			position: absolute;
+			top: 0;
+			left: 400px;
+			width: 300px;
+			height: 600px;
+			margin: 0;
+			color:aliceblue;
+			
+			text-shadow:1px 1px 0px #000;
+		}
+	</style>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/vue.js"></script>
 </head>
-<body>
-<div>
-hello Form2
-</div>
+
+<body oncontextmenu="return false;" onselectstart="return false">
+	<div id="infoshow">
+		</div>
+		
+		
+		<div id="mapshow">
+		
+		</div>
+		
+		<div id="skillshow">
+		
+			<ul>
+		<li v-for="(item, index) in RF.Skill">[{{index+1}}]{{item.Name}} {{item.Order}} S[{{item.Casting}}] L[{{item.Cooldown}}]</li>
+		</ul>
+		</div>
+	</div>
+<canvas id="myCanvas" width="100%" height="100%"></canvas>
+	
+	<script>
+		
+		//var map=[[1,2,3,0],[0,0,4,7],[0,0,5,6]];
+		
+		var v=new Vue({
+			  el: '#infoshow',
+  data: {
+	  R:{},
+	  RF:{height:0,z:0},
+	  Ms:[],
+	  M:{
+		  x:0,
+		  y:0
+	  },
+	  Gs:[],
+	  St:{},
+	  Ts:{},
+	  Sk:{},
+	  Sy:{},
+	  Map:{Way:[]},
+	  NowWay:{x:-1,y:-1,ID:-1,Index:-1,NextOpen:0},
+	  Show:{},
+	  nowx:0,
+	  nowy:0,
+	  TestP:{x:400,y:300},
+	  time:{}
+  }
+		});
+	
+	
+
+	function testdraw(a,b,c,d){
+		alert("::"+a);
+	}
+	
+//创建角色对象
+function Role(){
+	    this.r = this.rand(20);
+        this.x = this.r;
+        this.y = this.r;
+        this.speedX = this.rand(10);
+        this.speedY = this.rand(10);
+       
+        this.width = 0;
+        this.height = 0;
+        this.canvas = {};
+        this.color = 'rgb('+this.rand(255)+','+this.rand(255)+','+this.rand(255)+')';
+        this.init();	
+}
+		
+Role.prototype = {
+        init:function () {
+            var game = document.getElementById('myCanvas');
+            this.canvas = game.getContext('2d');
+            this.width=game.width;
+            this.height=game.height;
+        },
+        rand:function (num) {
+            return Math.floor(Math.random() * num+1);
+        },
+        play:function () {
+            this.x += this.speedX;
+            this.y += this.speedY;
+			v.nowx=this.x;
+			v.nowy=this.y;
+            if (this.x>this.width-this.r) {
+                this.speedX = -this.speedX;
+            }
+            if (this.x<this.r) {
+                this.speedX = Math.abs(this.speedX);
+            }
+            if (this.y>this.height-this.r) {
+                this.speedY = -this.speedY;
+            }
+            if (this.y<this.r) {
+                this.speedY = Math.abs(this.speedY);
+            }
+            this.canvas.beginPath();
+            this.canvas.fillStyle = this.color;
+            this.canvas.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+            this.canvas.fill();
+        }
+    };
+		//创建角色的对象
+		var ME=new Role();
+		
+	setInterval(function () {
+		ME.canvas.clearRect(0,0,800,600);
+		
+		draw1();
+	
+        //ME.play();
+    },30);
+	
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ ctx.translate(0.5, 0.5);
+		
+function draw1(){
+v.time.start=+(new Date()).valueOf();
+// 设置字体
+ctx.lineWidth=1;
+ctx.font = "italic small-caps bold 12px arial";
+// 设置颜色
+ctx.fillStyle = "#FF0";
+// 设置水平对齐方式
+ctx.textAlign = "center";
+// 设置垂直对齐方式
+ctx.textBaseline = "middle";
+// 绘制文字（参数：要写的字，x坐标，y坐标）
+ctx.strokeStyle = "#000";
+ctx.strokeText("绘制工具 v2.0",401,16);
+ctx.fillText("绘制工具 v2.0", 400, 15);
+//var intervalId = window.setInterval(function(){}, 1000);	
+//上边距		
+ctx.beginPath();
+ctx.strokeStyle="GhostWhite";
+ctx.moveTo(0,187);
+ctx.lineTo(800,187);
+//中边距
+ctx.moveTo(0,274);
+ctx.lineTo(800,274);
+//下边距
+ctx.moveTo(0,369);
+ctx.lineTo(800,369);
+//左中心边距
+ctx.moveTo(312,187);
+ctx.lineTo(312,369);
+//右左中心边距
+ctx.moveTo(487,187);
+ctx.lineTo(487,369);
+		
+ctx.stroke();	
+		
+		
+// 中心点矩形
+ctx.beginPath();
+ctx.lineWidth=1;
+//ctx.lineH
+ctx.strokeStyle="DarkSlateGray";
+ctx.rect(349,274,100,95);
+ctx.stroke();
+		
+
+if(v.R!=null){
+//绘制跟踪角色线
+ctx.beginPath();
+ctx.strokeStyle="Chartreuse";
+ctx.moveTo(400,0);
+ctx.lineTo(v.R.x,v.R.y);
+ctx.stroke();
+	
+// 绿色矩形
+ctx.beginPath();
+ctx.lineWidth=1;
+//ctx.lineH
+ctx.strokeStyle="Chartreuse";
+ctx.rect(v.R.x-((v.RF.z*12)/2),v.R.y-v.RF.height,v.RF.z*12,v.RF.height+10);
+//ctx.fillStyle = "#0F0";
+//ctx.textAlign = "center";
+//ctx.fillText(v.R.x+","+v.R.y, v.R.x,v.R.y);
+ctx.stroke();
+	
+	
+//门开了绘制门的坐标框
+if(v.NowWay.NextOpen==1){
+ctx.beginPath();
+ctx.strokeStyle="Chartreuse";
+ctx.rect(v.Map.Room[v.NowWay.Index].OutPosition[0],v.Map.Room[v.NowWay.Index].OutPosition[1],10,10);
+ctx.stroke();	
+	
+}	
+
+//绘制测试点 TestP
+	ctx.beginPath();
+ctx.strokeStyle="Fuchsia";
+	
+ctx.moveTo(400,0);
+ctx.lineTo(v.TestP.x,v.TestP.y);
+ctx.moveTo(v.R.x,v.R.y);
+ctx.lineTo(v.TestP.x,v.TestP.y);
+
+ctx.moveTo(v.TestP.x-50,v.TestP.y);
+ctx.lineTo(v.TestP.x+50,v.TestP.y);	
+ctx.moveTo(v.TestP.x,v.TestP.y-50);
+ctx.lineTo(v.TestP.x,v.TestP.y+50);	
+ctx.rect(v.TestP.x-5,v.TestP.y-5,10,10);
+	
+ctx.fillStyle = "#F0F";
+ctx.textAlign = "left";
+ctx.fillText(v.TestP.x+","+v.TestP.y,v.TestP.x+10,v.TestP.y-10);
+
+	
+ctx.stroke();
+	}
+ctx.textAlign = "center";	
+//绘制角色区域框
+	if(v.NowWay.Index>=0){
+ctx.beginPath();
+//ctx.lineWidth=1;
+ctx.strokeStyle="PaleGreen";
+ctx.moveTo(v.Map.Room[v.NowWay.Index].RegionRole[0],v.Map.Room[v.NowWay.Index].RegionRole[1]);
+//ctx.lineTo(v.Map.Room[v.NowWay.Index].RegionRole[2],v.Map.Room[v.NowWay.Index].RegionRole[3]);
+ctx.rect(v.Map.Room[v.NowWay.Index].RegionRole[0],v.Map.Room[v.NowWay.Index].RegionRole[1],v.Map.Room[v.NowWay.Index].RegionRole[2],v.Map.Room[v.NowWay.Index].RegionRole[3]);
+	ctx.stroke();
+	}
+	
+	
+	
+//绘制跟踪怪物线
+ctx.beginPath();
+ctx.strokeStyle="Cyan";
+ctx.moveTo(400,0);
+ctx.lineTo(v.M.x,v.M.y);
+ctx.lineWidth=1;
+ctx.rect(v.M.x,v.M.y,20,20);
+ctx.stroke();
+for(i=0;i<v.Ms.length;i++){
+//绘制跟踪怪物线
+ctx.beginPath();
+ctx.strokeStyle="Blue";
+ctx.moveTo(400,0);
+ctx.lineTo(v.Ms[i].x,v.Ms[i].y);
+ctx.lineWidth=1;
+ctx.rect(v.Ms[i].x,v.Ms[i].y,20,20);
+ctx.stroke();
+}	
+	
+	
+for(i=0;i<v.Gs.length;i++){
+//绘制物品
+ctx.beginPath();
+ctx.strokeStyle="Yellow";
+ctx.moveTo(400,0);
+ctx.lineTo(v.Gs[i].x,v.Gs[i].y);
+ctx.lineWidth=1;
+	if(v.Gs[i].y2<v.Gs[i].y1){
+	ctx.rect(v.Gs[i].x1,v.Gs[i].y1,33,25);	
+		
+	}else{
+		ctx.rect(v.Gs[i].x1,v.Gs[i].y1,v.Gs[i].x2+5-v.Gs[i].x1,25);
+		
+	}
+
+ctx.rect(v.Gs[i].x-13,v.Gs[i].y,25,25);
+ctx.fillStyle = "#FF0";
+ctx.textAlign = "center";
+ctx.fillText(v.Gs[i].x+","+v.Gs[i].y,v.Gs[i].x,v.Gs[i].y1+60);
+
+	
+ctx.stroke();
+}		
+	
+//绘制地图框
+
+ctx.beginPath();
+ctx.strokeStyle="Yellow";
+ctx.moveTo(400,0);
+//ctx.lineTo(v.Gs[i].x,v.Gs[i].y);
+ctx.lineWidth=1;
+ctx.rect(718,46,76,56);
+	
+	if(v.Map){
+	for(i=0,z=0;i<v.Map.Way.length;i++){
+		for(s=0;s<v.Map.Way[i].length;s++,z++){
+			var x=(795-(v.Map.Way[i].length*19))+(s*19);
+			var y=46+(i*19);
+		
+			if(v.NowWay.x>x && v.NowWay.x<x+19 && v.NowWay.y>y && v.NowWay.y<y+19){
+				v.NowWay.ID=v.Map.Way[i][s];
+				v.NowWay.Index=z;
+				ctx.moveTo(x+19,y+9);
+				ctx.arc(x+9,y+9,8,0,2*Math.PI);
+ctx.stroke();
+				//ctx.fillRect(x,y,19,19);
+				ctx.fillStyle = "OrangeRed";
+				
+			}else{
+				if(v.Map.Way[i][s]==0){
+				ctx.fillStyle = "Maroon";
+				ctx.fillRect(x,y,19,19);
+			}
+				ctx.fillStyle = "#FF0";
+			}
+			
+			
+			//下一个房间 标记颜色
+			if(v.NowWay.Index>=0){
+			if(v.Map.Way[i][s]==v.Map.Room[v.NowWay.Index].Out){
+				ctx.fillStyle = "#0F0";
+			}
+		}
+		ctx.rect(x,y,19,19);
+			
+		ctx.fillText(v.Map.Way[i][s],x+9,y+9);	
+		}
+		
+	}
+	
+	
+}
+ctx.stroke();	
+
+		
+	//绘制 角色 到怪的距离
+	//v.M.x=minX;
+	//v.M.y=minY;
+	//绘制到怪物线
+ctx.beginPath();
+ctx.strokeStyle="Cyan";
+ctx.moveTo(v.R.x,v.R.y);
+ctx.lineTo(v.M.x,v.M.y);
+ctx.stroke();
+v.time.end=+(new Date()).valueOf();
+}
+	
+	
+		
+		function TrackRole(x,y){
+			if(x+y>1){
+			v.R.x=parseInt(x)+15;
+			v.R.y=parseInt(y)+120;
+			}
+		}
+		
+		function TrackMonster(data){
+			v.M=JSON.parse(data);
+		}
+		
+			function TrackMs(data){
+				v.Ms=JSON.parse(data);
+				/*
+				v.Ms=[];
+				var li=list.split("|");
+			for(i=0;i<li.length;i++){
+				var s=li[i].split(",");
+				var Name=s[0];
+				var x=s[1];
+				var y=s[2];
+				
+				if(x+y>1){
+				v.Ms.push({
+					Name:Name,
+					x:x,
+					y:y
+				});
+					}
+			}*/
+
+
+		}
+		
+		function TrackGoods(data){
+			
+	v.Gs=JSON.parse(data);	
+		}
+				//角色信息
+function RoleInfo(data){
+	v.R=JSON.parse(data);
+}	
+function MapInfo(data){
+	v.Map=JSON.parse(data);
+}
+function NowWay(data){
+	v.NowWay=JSON.parse(data);
+
+}
+function Stage(data){
+	v.St=JSON.parse(data);
+
+}
+function RoleConfig(data){
+	v.RF=JSON.parse(data);
+
+}
+		
+function TestSwitch(data){
+	v.Ts=JSON.parse(data);
+}
+function Skill(data){
+	v.Sk=JSON.parse(data);
+}
+		
+function TestP(data){
+	v.TestP=JSON.parse(data);
+}
+
+
+//化繁为简 通用同步数据,慢慢取代其他对象
+function synchro(data){
+	v.Sy=JSON.parse(data);
+}
+		
+		window.onload = function(){
+		window.external.DrawReady();
+		}
+	</script>
+	
+
 </body>
 </html>

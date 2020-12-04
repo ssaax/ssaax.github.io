@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Form1</title>
-<script>document.write("<link rel='stylesheet' href='./style.css' type='text/css' media='all' />");</script>
+<script>document.write("<link rel='stylesheet' href='./style.css?v=" + Date.now() + "' type='text/css' media='all' />");</script>
 <script type="text/javascript" src="/js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript" src="/js/jquery.md5.js"></script>
 <script type="text/javascript" src="/js/vue.js"></script>
@@ -12,9 +12,159 @@
 hello Form1
 </div>
 <div id="main">
+<div id="LogDiv" class="L LOGDIV"><div class="divTitle">日志({{logs.length}})</div>
+		<ul id="loglist">
+		<li v-for="(item, index) in logs" :class="'code'+item.code">
+    [{{ item.time }}] {{ item.message }}
+  </li></ul>
+    </div>
 <ul>
 
 </ul>
 </div>
+
+		<script language="javascript">
+			window.external.ShowMe();
+		var v=new Vue({
+			  el: '#main',
+  data: {
+	  logs:[],
+	  role:[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+	  Map:{},
+	  R:{},
+	  s1:0,
+	  s2:0,
+	  St:{},
+	  Sy:{ThreadStatus:{},St:{},Ts:{},MsNum:0,GsNum:0,R:{}},
+	  Ts:{},
+	  ThreadStatus:{},
+	  checked:false,
+	  testinfo:"hello",
+	  drawdata:"testdraw`100`100`100`100"
+  },methods:{
+	  showdraw:function(a){
+		// alert(a);
+		  window.external.ShowDrawWindow(a);
+	  },
+	  checkboxtest:function(a,b){
+		  window.external.SetTestSwitch(a,b);
+		  
+	  }
+	  ,
+	  testdraw:function(a){
+		
+		 window.external.Draw(this.drawdata);
+		 this.drawdata="testdraw`200`100`100`100";
+	  }
+  }
+		});
+		//document.body.style.backgroundColor="rgb("+window.externasl.GetbgColor()+")";
+		window.onload = function()
+		{
+			$('#LogDiv').perfectScrollbar();
+			$('#RoleList').perfectScrollbar();
+			$("#loadingdiv").fadeOut("slow");
+			log("仪表盘准备就绪！");
+			window.external.Ready();
+
+			
+		}
+function loginout(){
+	window.external.Lockout();
+	window.location.replace('?do=101');
+}
+function test1(){
+					//window.external.test1();
+	window.location.reload();
+					 
+				}
+function test2(){
+	window.external.test2();
+}
+			
+function test3(){
+	window.external.test3();
+}
+			
+			function Test(a,b){
+				window.external.SetTestSwitch(a,b);
+				
+			}
+function StartWork(){
+	window.external.StartWork();
+}
+function StopWork(){
+	window.external.StopWork();
+}
+			//获得绘制开关状态
+			function setdraw(a){
+				if(a==1){
+				v.checked=true;	
+				}else{
+					v.checked=false;
+				}
+				
+				
+			}
+			//角色信息
+function RoleInfo(data){
+	v.R=JSON.parse(data);
+}
+			//地图信息
+function MapInfo(data){
+	v.Map=JSON.parse(data);
+}
+function ThreadStatus(data){
+	v.ThreadStatus=JSON.parse(data);
+}	
+			
+function Stage(data){
+	v.St=JSON.parse(data);
+}
+			
+function TestSwitch(data){
+	v.Ts=JSON.parse(data);
+}
+			
+//化繁为简 通用同步数据,慢慢取代其他对象
+function synchro(data){
+	v.Sy=JSON.parse(data);
+}
+
+			
+//保存数据到本地
+function SaveData(){
+//localStorage.
+	
+}
+function S(a){
+	a=log(a);
+}
+function log(a,b){
+	 var b = arguments[1] ? arguments[1] : 0;
+	//var ele = document.getElementById('loglist');
+//ele.scrollTop = ele.scrollHeight;
+	 $(".LOGDIV").scrollTop($("#loglist").height());
+	//v.testinfo=$("#loglist").children("li").length+","+$("#loglist").height();
+	v.logs.push({time:tick(),message:a,code:b});
+	return "JAVASCRIPT";
+}			
+			
+			function tick() {
+    
+        var date = new Date();
+        this.year = date.getFullYear();
+        this.month = date.getMonth() + 1;
+        this.date = date.getDate();
+        this.hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        this.minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        this.second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+        var currentTime =  this.hour + ":" + this.minute + ":" + this.second;
+
+        return currentTime;
+           
+           
+    }
+	</script>
 </body>
 </html>
