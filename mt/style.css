@@ -1,0 +1,472 @@
+*,body{margin: 0;
+		padding: 0;
+		border: 0;font-size: 12px;
+		font-family: "宋体",Cambria, Hoefler Text, Liberation Serif, Times, Times New Roman, serif}
+ul,li{list-style: none;
+margin: 0;
+padding: 0;}
+	body{width: 500px;
+	height: 700px;
+	background-color:aliceblue;
+background-image: url(images/bg.png);
+background-repeat: no-repeat;}
+
+label,input{vertical-align:middle} 
+input{
+	border-bottom: 1px solid #333;
+	background-color:#333;
+	color: #FFF;
+	transition-duration: 0.4s;
+	text-align:inherit;
+	padding-left: 2px;
+}
+input:focus{
+	color:gold;
+ outline:none;
+	border-bottom: 1px solid #0FF;
+}
+#page button{
+	transition-duration: 0.4s;
+	background: linear-gradient(#FFF, #BBB);
+	border-radius: 5px;
+	padding: 5px 15px;
+	height: 30px;
+	border: 1px solid #BBB;
+	box-shadow: 1px 1px 0px #999;
+	text-align: center;
+}
+
+#page button:hover{
+	color: #333;
+	text-indent:5px;
+	letter-spacing:5px;
+	border: 1px solid #666;
+	box-shadow: 1px 1px 0px #333;
+	font-weight: bold;
+}
+
+#page button:active{
+background: linear-gradient(#BBB, #FFF);
+	text-shadow: 1px 1px 5px #333;
+}
+
+	header{
+		
+		position: absolute;
+		z-index: 100;
+		width: 498px;
+		height: 20px;
+		text-align: right;	
+		cursor: default;
+		border-left: 1px solid #000;
+		border-right:  1px solid #000;
+		border-top:  1px solid #000;
+	}
+header button{
+background-color: #000;
+	color:darkgrey;
+	border-radius: 0 0 5px 5px;
+	transition-duration: 0.4s;
+}
+header button:hover{
+	color: ghostwhite;
+}
+header button:active{
+
+
+}
+	#window_title{
+		position: absolute;
+		width: 300px;/*420px*/
+		height: 20px;
+-webkit-user-select: none;
+user-select: none;
+		text-align: left;
+		color: chartreuse;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 20px;
+		padding-left: 5px;
+		background-image: url(images/logo.png);
+		background-repeat: no-repeat;
+
+		
+	}
+	
+	button{
+		height: 20px;
+		line-height: 20px;
+		padding-left: 5px;
+		padding-right: 5px;
+		outline:none;
+	}
+#page{
+	background-image: url(images/cpbg.png);
+background-repeat: no-repeat;
+background-color: #333;
+}
+	#page .tab{display: none;
+	background-color: darkkhaki;
+width: 498px;
+		height: 500px;
+			border-left: 1px solid #000;
+		border-right:  1px solid #000;
+		border-bottom: 1px solid #000;
+	}
+
+/** 铺满**/
+#page .full{
+	
+		position: absolute;
+	padding-top: 20px;
+	height: 546px!important;
+	top: 0px;
+	text-align: center;
+}
+/* LOGING 加载页面 */
+#loading{
+
+background-color:#555!important;color: #FFF;
+}
+/* LOGIN 登录页面 */
+#login{
+	background-color:rebeccapurple!important;
+}
+#login .info{
+	display: none;
+	border: 1px solid #FF0;
+	background-color: #F00;
+	margin: 5px;
+	color: #FF0;
+	border-radius: 5px;
+}
+#login .box{
+	margin: auto;
+	background-color:aliceblue;
+	
+	width: 300px;
+	margin-top: 100px;
+	box-shadow: 5px 5px 5px #111;
+}
+
+#login input{
+	background-color: aliceblue;
+	color:#000;
+	
+}
+#login input:hover{
+	border-bottom: 1px solid blueviolet;
+	color: blueviolet;
+}
+#login input:focus{
+	border-bottom: 1px solid blueviolet;
+	color: mediumblue;
+	font-size: 14px;
+}
+#login .box li{
+	height: 40px;
+	line-height: 40px;
+}
+#login .box .title{
+	font-size: 18px;
+font-weight: bold;}
+
+
+/*仪表盘*/
+#dashboard{
+	height: 101px;
+	width: 498px;
+	padding-top: 25px;
+	border-left: 1px solid #000;
+	border-right:  1px solid #000;
+	background: linear-gradient(#333, #222);
+	color: #999;
+	display: none;
+}
+#dashboard .box{
+	height: 80px;
+	width: 498px;
+
+}
+#dashboard .a{
+	height: 80px;
+	width: 166px;
+	
+}
+#dashboard .b{
+	height: 80px;
+	width: 166px;
+
+}
+#dashboard .c{
+	height: 80px;
+	width: 166px;
+
+}
+#dashboard .L .title{
+	font-weight: bold;
+}
+#dashboard .L li{
+	padding-left: 5px;
+height: 20px;
+	line-height: 20px;
+	
+}
+#dashboard #setmenu{
+	position:relative;
+	bottom: 0px;
+	width: 498px;
+	height: 20px;
+	border-bottom: 1px solid #000;
+}
+#dashboard #setmenu li{
+	float: left;
+	height: 20px;
+	width: 50px;
+	line-height: 20px;
+	text-align: center;
+	transition-duration: 0.4s;
+	background: linear-gradient(#333, #111);
+	margin-left: 5px;
+	border-radius: 5px 5px 0 0;
+}
+#dashboard #setmenu li:hover{
+	background: linear-gradient(#333, #000);
+	color: #FFF;
+	cursor:default;
+}
+#dashboard #setmenu .now{
+	height: 20px;
+	width: 48px;
+	background: linear-gradient(#666, #333);
+	color: #FFF;
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	transition-duration: 0.4s;
+}
+#dashboard #setmenu .now:hover{
+	background: linear-gradient(#666, #333);
+}
+
+.L{
+	float: left;
+}
+.R{
+	float: right;
+}.H{
+	display: none;
+}
+.C{text-align: center;}
+
+.X5{
+	margin: 0 5px 0 5px ;
+}
+/*CP*/
+.cp{
+	background-color:#333!important;
+	color: #999;
+	height:440px!important; 
+}
+
+/* Radmin List*/
+#ShowRadminList ul {
+	padding: 10px;
+	height: 420px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#ShowRadminList ul li{
+	height: 100px;
+	width: 478px;
+	border-radius: 5px;
+	margin-bottom: 8px;
+	counter-increment: icecream;
+}
+#ShowRadminList .head{
+	border-radius: 5px 5px 0 0;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10px;
+	text-shadow: 1px 1px 0px #000;
+background: linear-gradient(#666, #444);
+}
+#ShowRadminList .head .a{
+width: 60px;
+}
+#ShowRadminList .head .b{
+	width: 0px;
+}
+#ShowRadminList .head .c{
+	width: 100px;
+		height: 20px;
+	display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+#ShowRadminList .head .d{
+	width: 50px;
+
+}
+#ShowRadminList .head .e{
+	width: 20px;
+}
+#ShowRadminList .head .f{
+	width: 160px;
+}
+#ShowRadminList .head .z{
+	width: 32px;
+	text-align: center;
+transition-duration: 0.4s;
+}
+#ShowRadminList .head .z:hover{
+	color: yellowgreen;
+	cursor: default;
+}
+#ShowRadminList .body{
+	height: 80px;
+	border-radius: 0 0 5px 5px;
+background: linear-gradient(#555, #999);	
+}
+#ShowRadminList .body .image,#ShowRadminList .body .image img{
+	width: 100px;
+	height: 80px;
+	background-color:antiquewhite; 
+	border-radius: 0 0 0 5px;
+}
+#ShowRadminList .body .info{
+	position: relative;
+	width: 378px;
+	height: 80px;
+	
+	border-radius: 0 0 5px 0;
+}
+#ShowRadminList .body .info .no{
+	position:absolute;
+	right: 10px;
+	font-size: 72px;
+	font-style:oblique;
+	font-family: Times New Roman, serif;
+	opacity: 0.5;
+	
+}
+
+#ShowRadminList .body .info .no:before {
+	
+content:counter(icecream);
+	
+}
+
+/* Set s1*/
+#set{
+	
+}
+
+#set ul li{
+	height: 25px;
+	line-height: 25px;
+}
+
+
+.del{
+	background-color: #F00!important;
+}
+
+/* 底部日志*/
+footer{
+	position: fixed;
+	bottom: 0;
+	height: 130px;
+	width: 498px;
+	border: 1px solid #000;
+	color: #151515;
+	
+}
+footer .title{
+	background-color: #000;
+	color: #FFF;
+	width: 53px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 5px;
+	position: absolute;
+	border-radius: 0 0 6px 0;
+}
+footer #loglist {
+	height: 130px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+footer #loglist li{
+	min-height: 18px;
+	line-height: 18px;
+	list-style: none;
+	width: 495px;
+	padding-left: 5px;
+}
+footer #loglist .time{width:120px;
+	float: left;
+}
+footer #loglist .body{width:368px;
+float:  left;}
+footer #loglist .log_show_0{}
+footer #loglist .log_show_1{background-color: #0F0;}
+footer #loglist .log_show_2{background-color: #FF0;color: #F00;}
+footer #loglist .log_show_3{background-color: #00F;color: #FFF;}
+footer #loglist .log_show_4{background-color: #F00;color: #FFF;}
+
+/*滚动条样式*/
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 4px;  
+    height: 4px;  
+    background-color:azure;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  
+    border-radius: 10px;  
+    background-color:azure;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: #666;  
+}  
+
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  background-color: #67CF22;
+ 
+  margin: 100px auto;
+  -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+  animation: rotateplane 1.2s infinite ease-in-out;
+}
+ 
+@-webkit-keyframes rotateplane {
+  0% { transform: perspective(120px) }
+  50% { transform: perspective(120px) rotateY(180deg) }
+  100% { transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+ 
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+
+  } 50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+
+  } 100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+
+  }
+}
